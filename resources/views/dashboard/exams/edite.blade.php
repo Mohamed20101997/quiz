@@ -49,7 +49,7 @@
                                         <option value="{{$subject->id}}" {{old('subject_id' , $exam->subject->id) == $subject->id ? 'selected' : ''}}>{{$subject->name}}</option>
                                     @endforeach
                                 </select>
-                                @error('user_id')
+                                @error('subject_id')
                                 <div class="text-danger">{{ $message }}</div>
                                 @enderror
                             </div>

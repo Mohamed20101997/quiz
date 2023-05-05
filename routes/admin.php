@@ -10,6 +10,8 @@ Route::group(['middleware'=>['auth:web']], function () {
     Route::resource('subject','SubjectController');
 
     Route::resource('exam','ExamController');
+    Route::resource('question','QuestionController');
+
     //logout route
     Route::post('logout', 'AuthController@logout')->name('logout');
 

@@ -11,4 +11,11 @@ class QuestionSubject extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+
+    public function subject(){
+        return $this->belongsTo(Subject::class , 'subject_id' , 'id');
+    }
+
+
 }
