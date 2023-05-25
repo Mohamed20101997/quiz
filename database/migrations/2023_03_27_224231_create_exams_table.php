@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('title');
             $table->float('duration');
             $table->unsignedBigInteger('subject_id');
+            $table->unsignedBigInteger('user_id');
         });
     }
 

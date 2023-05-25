@@ -3,13 +3,13 @@
 namespace App\Http\Controllers\Dashboard;
 
 use App\Http\Controllers\Controller;
+use App\Models\Room;
 use App\Models\Exam;
-use App\Models\Subject;
 use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
-class ExamController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,8 +18,8 @@ class ExamController extends Controller
      */
     public function index()
     {
-        $exams = Exam::where('user_id',auth()->user()->id)->with('subject')->simplePaginate(5);
-        return view('dashboard.exams.index',compact('exams'));
+        $rooms = Room::where('user_id',auth()->user()->id)->with('exam')->simplePaginate(5);
+        return view('dashboard.rooms.index',compact('rooms'));
     }
 
     /**
@@ -29,8 +29,8 @@ class ExamController extends Controller
      */
     public function create()
     {
-        $subjects  = Subject::where('user_id',auth()->user()->id)->get();
-        return view('dashboard.exams.create', compact('subjects'));
+        $exams  = Exam::where('user_id',auth()->user()->id)->get();
+        return view('dashboard.rooms.create', compact('exams'));
     }
 
     /**
@@ -42,18 +42,17 @@ class ExamController extends Controller
     public function store(Request $request)
     {
         $request->validate([
-            'title'  => 'required',
-            'duration'  => 'required',
-            'subject_id'  => 'required|exists:subjects,id',
+            'password'  => 'required',
+            'exam_id'  => 'required|exists:exams,id',
         ]);
 
         try{
             $data = $request->except('_token');
             $data['user_id'] = auth()->user()->id;
-            Exam::create($data);
+            Room::create($data);
 
             session()->flash('success', 'تم الاضافه بنجاح');
-            return redirect()->route('exam.index');
+            return redirect()->route('room.index');
 
         }catch(\Exception $e){
             DB::rollback();
@@ -80,9 +79,9 @@ class ExamController extends Controller
      */
     public function edit($id)
     {
-        $exam = Exam::where('user_id',auth()->user()->id)->with('subject')->find($id);
-        $subjects  = Subject::where('user_id',auth()->user()->id)->get();
-        return view('dashboard.exams.edite', compact('exam', 'subjects'));
+        $room = Room::where('user_id',auth()->user()->id)->with('exam')->find($id);
+        $exams  = Exam::where('user_id',auth()->user()->id)->get();
+        return view('dashboard.rooms.edite', compact('room', 'exams'));
     }
 
     /**
@@ -95,22 +94,21 @@ class ExamController extends Controller
     public function update(Request $request, $id)
     {
         $request->validate([
-            'title'  => 'required',
-            'duration'  => 'required',
-            'subject_id'  => 'required|exists:subjects,id',
+            'password'  => 'required',
+            'exam_id'  => 'required|exists:exams,id',
         ]);
 
         try{
 
-            $exam =  Exam::find($id);
+            $room =  Room::find($id);
 
             $data = $request->except('_token');
 
-            $exam->update($data);
+            $room->update($data);
 
             session()->flash('success', 'تم التعديل بنجاح');
 
-            return redirect()->route('exam.index');
+            return redirect()->route('room.index');
 
         }catch(\Exception $e){
             return redirect()->back()->with(['error'=>'هناك مشكله']);
@@ -126,18 +124,18 @@ class ExamController extends Controller
     public function destroy($id)
     {
         try{
-            $exam =  Exam::find($id);
+            $room =  Room::find($id);
 
-            if(!$exam)
+            if(!$room)
             {
-                return redirect()->back()->with(['error'=>'لا يوجد مستخدمين']);
+                return redirect()->back()->with(['error'=>'لا يوجد']);
             }
 
-            $exam->delete();
+            $room->delete();
 
             session()->flash('success', 'تم الحذف بنجاح');
 
-            return redirect()->route('exam.index');
+            return redirect()->route('room.index');
 
         }catch(\Exception $e){
 

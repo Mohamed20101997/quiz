@@ -11,4 +11,9 @@ class Room extends Model
     public $timestamps = false;
 
     protected $guarded = [];
+
+
+    public function exam(){
+        return $this->belongsTo(Exam::class , 'exam_id','id');
+    }
 }

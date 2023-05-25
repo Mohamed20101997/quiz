@@ -46,6 +46,12 @@ class User extends Authenticatable
     ];
 
     public function getRoleAttribute($value){
-        return $value == 'student' ? 'طالب' : 'مدرس';
+        if($value == 'student'){
+            return 'طالب';
+        }elseif($value == 'teacher'){
+            return 'مدرس';
+        }else{
+            return 'ادمن';
+        }
     }
 }

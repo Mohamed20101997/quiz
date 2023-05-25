@@ -17,6 +17,7 @@ return new class extends Migration
             $table->id();
             $table->text('question');
             $table->enum('type' , ['true_false' , 'mcq']);
+            $table->unsignedBigInteger('user_id');
         });
     }
 

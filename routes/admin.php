@@ -11,7 +11,7 @@ Route::group(['middleware'=>['auth:web']], function () {
 
     Route::resource('exam','ExamController');
     Route::resource('question','QuestionController');
-
+    Route::resource('room','RoomController');
     //logout route
     Route::post('logout', 'AuthController@logout')->name('logout');
 

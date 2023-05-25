@@ -20,7 +20,7 @@ class QuestionController extends Controller
      */
     public function index()
     {
-        $questions = Question::simplePaginate(5);
+        $questions = Question::where('user_id',auth()->user()->id)->simplePaginate(5);
         return view('dashboard.questions.index',compact('questions'));
     }
 
@@ -31,7 +31,7 @@ class QuestionController extends Controller
      */
     public function create()
     {
-        $subjects  = Subject::get();
+        $subjects  = Subject::where('user_id',auth()->user()->id)->get();
         return view('dashboard.questions.create', compact('subjects'));
 
     }
@@ -63,6 +63,7 @@ class QuestionController extends Controller
             $question = Question::create([
                 'question' => $data['question'],
                 'type' => $data['type'],
+                'user_id' => auth()->user()->id
             ]);
 
             if($question){
@@ -85,7 +86,7 @@ class QuestionController extends Controller
             }
             DB::commit();
             session()->flash('success', 'تم الاضافه بنجاح');
-            return redirect()->route('exam.index');
+            return redirect()->route('question.index');
 
         }catch(\Exception $e){
             DB::rollback();
@@ -112,7 +113,7 @@ class QuestionController extends Controller
      */
     public function edit($id)
     {
-        $subjects  = Subject::get();
+        $subjects  = Subject::where('user_id',auth()->user()->id)->get();
         $question = Question::findOrFail($id);
         return view('dashboard.questions.edite', compact('subjects','question'));
     }

@@ -20,6 +20,7 @@ return new class extends Migration
             $table->string('choice_C');
             $table->string('choice_D');
             $table->unsignedBigInteger('question_id');
+
         });
     }
 

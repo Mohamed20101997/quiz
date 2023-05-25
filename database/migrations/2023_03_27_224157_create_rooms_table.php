@@ -16,6 +16,8 @@ return new class extends Migration
         Schema::create('rooms', function (Blueprint $table) {
             $table->id();
             $table->string('password');
+            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('exam_id');
         });
     }
 
