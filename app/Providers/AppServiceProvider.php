@@ -30,5 +30,9 @@ class AppServiceProvider extends ServiceProvider
         View::composer(['layouts.dashboard._aside'],function ($view){
             $view->with('user', User::where('id' , auth()->user()->id)->first());
         });
+
+        View::composer(['layouts.front.app'],function ($view){
+            $view->with('teachers', User::where('role' , 'teacher')->whereHas('subjects')->get());
+        });
     }
 }

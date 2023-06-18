@@ -13,6 +13,19 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+
+
+
+    Route::get('/',[\App\Http\Controllers\FrontController::class,  'home'])->name('home');
+
+    Route::get('get-subjects/{id}', [\App\Http\Controllers\FrontController::class,  'getSubjects'])->name('get-subjects');
+    Route::get('get-exams/{id}', [\App\Http\Controllers\FrontController::class,  'getExams'])->name('get-exams');
+    Route::get('get-rooms/{id}', [\App\Http\Controllers\FrontController::class,  'getRooms'])->name('get-get-rooms');
+    Route::get('get-rooms/{id}', [\App\Http\Controllers\FrontController::class,  'getRooms'])->name('get-get-rooms');
+
+    Route::post('userLogin', [\App\Http\Controllers\FrontController::class,  'login'])->name('userLogin');
+    Route::get('userLogout', [\App\Http\Controllers\FrontController::class,  'logout'])->name('userLogout');
+
+
+
+//userLogin

@@ -45,6 +45,10 @@ class User extends Authenticatable
         'email_verified_at' => 'datetime',
     ];
 
+    public function subjects(){
+       return $this->hasMany(Subject::class , 'user_id','id');
+    }
+
     public function getRoleAttribute($value){
         if($value == 'student'){
             return 'طالب';

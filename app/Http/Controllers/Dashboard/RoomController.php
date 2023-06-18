@@ -43,7 +43,7 @@ class RoomController extends Controller
     {
         $request->validate([
             'password'  => 'required',
-            'exam_id'  => 'required|exists:exams,id',
+            'exam_id'  => 'required|exists:exams,id|unique:rooms,exam_id',
         ]);
 
         try{
@@ -95,7 +95,7 @@ class RoomController extends Controller
     {
         $request->validate([
             'password'  => 'required',
-            'exam_id'  => 'required|exists:exams,id',
+            'exam_id'  => 'required|exists:exams,id|unique:rooms,exam_id,'.$id,
         ]);
 
         try{
