@@ -67,6 +67,38 @@ class FrontController extends Controller
     }
 
 
+    public function getExam(Request $request){
+
+
+        $request->validate([
+            'room_id'  => 'required|exists:rooms,password',
+            'user_id' => 'required|exists:users,id',
+            'exam_id' => 'required|exists:exams,id'
+        ],[
+            'room_id.required'=> 'يجب ادخال رقم الغرفة',
+            'room_id.exists'=> 'رقم خاطئ او غير موجود',
+            'user_id.required'=> 'يجب اختيار مدرس ',
+            'user_id.exists'=> 'مدرس غير موجود',
+            'exam_id.required'=> 'يجب اختيار امتحان ',
+            'exam_id.exists'=> 'امتحان غير موجود',
+        ]);
+
+
+        try{
+
+            $room = Room::where([['password', $request->room_id],['user_id',$request->user_id],['exam_id' , $request->exam_id]])->first();
+            if($room){
+                $exam = Exam::where('id',$room->exam_id)->with('subject')->first();
+                
+
+            }
+
+        }catch(\Exception $e){
+
+            return redirect()->back()->with(['error'=>'هناك مشكله']);
+        }
+    }
+
 
 
 }

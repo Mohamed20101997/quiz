@@ -5,9 +5,13 @@
         <div class="col-md-6">
             <div class="card">
                 <div class="card-header">
-                    <form method="get" class="row" >
-                        <input name="room_id" type="text" class="form-control my-2" placeholder="رقم الغرفة">
-                        <button type="submit" class="btn btn-primary my-2">ادخال</button>
+                    <form method="post" id="room-form" class="row"  >
+                        @csrf
+                        @method('post')
+                        <ul id="validation-errors" class="px-5 alert alert-danger"></ul>
+
+                        <input name="room_id" id="room_id" type="text" class="form-control my-2" placeholder="رقم الغرفة">
+                        <button type="submit" data-url="{{route('exam.front')}}" id="btnRoom" class="btn btn-primary my-2">ادخال</button>
                     </form>
 
                 </div>

@@ -152,5 +152,39 @@
                 }
             });
         });
+
+
+        $(document).on('click', '#btnRoom', function (e) {
+            e.preventDefault()
+            var url = $(this).data('url');
+
+            $.ajaxSetup({
+                headers: {
+                    'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+                }
+            });
+            $.ajax({
+                url: url,
+                method: 'post',
+                data:{
+                    'room_id':$('#room_id').val(),
+                    'user_id' : $('#teachers').val(),
+                    'exam_id' : $('#exams').val()
+                    }
+                , success: function (response) {
+                    console.log(response);
+
+                },error:function(response){
+                    var errors = response.responseJSON.errors;
+                    $('#validation-errors').html('');
+
+                    $.each(errors, function(key, value) {
+                        $('#validation-errors').append('<li>' + value[0] + '</li>');
+                    });
+                }
+            });
+        });
+
+
     </script>
 @endsection

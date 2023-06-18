@@ -23,6 +23,10 @@ use Illuminate\Support\Facades\Route;
     Route::get('get-rooms/{id}', [\App\Http\Controllers\FrontController::class,  'getRooms'])->name('get-get-rooms');
     Route::get('get-rooms/{id}', [\App\Http\Controllers\FrontController::class,  'getRooms'])->name('get-get-rooms');
 
+
+
+    Route::post('exam-front', [\App\Http\Controllers\FrontController::class,  'getExam'])->name('exam.front');
+
     Route::post('userLogin', [\App\Http\Controllers\FrontController::class,  'login'])->name('userLogin');
     Route::get('userLogout', [\App\Http\Controllers\FrontController::class,  'logout'])->name('userLogout');
 
