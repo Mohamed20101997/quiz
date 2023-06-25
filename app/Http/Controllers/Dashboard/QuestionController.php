@@ -60,6 +60,17 @@ class QuestionController extends Controller
         try{
             $data = $request->except('_token');
 
+
+            $examDegree = exam::where('subject_id', $data['subject_id'])->first();
+            $QuestionSubjectDegree = QuestionSubject::where('subject_id', $data['subject_id'])->sum('degree');
+
+            $total = $QuestionSubjectDegree + $data['degree'];
+
+
+            if($total > $examDegree->degree){
+                return redirect()->back()->with(['error'=>"يجب ان تكون درجات الاسألة تساوي الدرجة النهائية للامتحان : درجة الامتحان" . ' = [ ' . $examDegree->degree. " ] الدرجة النهائية للاساله  = [ " . $QuestionSubjectDegree ." ] "]);
+            }
+
             $question = Question::create([
                 'question' => $data['question'],
                 'type' => $data['type'],
@@ -142,6 +153,15 @@ class QuestionController extends Controller
         DB::beginTransaction();
         try{
             $data = $request->except('_token');
+
+
+            $examDegree = exam::where('subject_id', $data['subject_id'])->first();
+            $QuestionSubjectDegree = QuestionSubject::where('subject_id', $data['subject_id'])->sum('degree');
+
+            $total = $QuestionSubjectDegree + $data['degree'];
+
+
+            
 
             $question = Question::findOrFail($id);
 

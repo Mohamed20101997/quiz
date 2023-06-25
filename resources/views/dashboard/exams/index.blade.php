@@ -28,6 +28,7 @@
                                         <th>عنوان الامتحان</th>
                                         <th>المدة الزمنيه</th>
                                         <th>المادة</th>
+                                        <th>الدرجة</th>
                                         <th>الإجراءات</th>
                                     </tr>
                                     </thead>
@@ -39,6 +40,7 @@
                                             <td>{{$exam->title}}</td>
                                             <td>{{$exam->duration}}</td>
                                             <td>{{$exam->subject->name}}</td>
+                                            <td>{{$exam->degree}}</td>
 
                                             <td>
                                                 <a href="{{ route('exam.edit', $exam->id) }}" class="btn btn-warning btn-sm"><i class="fa fa-edit"></i></a>

@@ -19,7 +19,7 @@
                     <li class="list-group-item">المدرس :{{$room->exam->subject->user->name}} </li>
                     <li class="list-group-item">الماده :{{$room->exam->subject->name}} </li>
                     <li class="list-group-item">الامتحان : {{$room->exam->title}}</li>
-                    <li class="list-group-item">المدة  :{{$room->exam->duration}} </li>
+                    <li class="list-group-item">المدة  :{{$room->exam->duration}} دقيقة</li>
                 </ul>
                 <div class="card-footer text-bg-warning">لديك مرة واحده لإجراء الامتحان </div>
             </div>

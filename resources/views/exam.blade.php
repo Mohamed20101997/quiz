@@ -1,72 +1,88 @@
-@extends('layouts.front.app')
+<div class="main-banner-item banner-item-three"  style="height: 430vh">
+    <div class="container" style="padding-top: 80px">
 
-@section('content')
+        <input type="hidden" id="exam_duration" value="{{$exam->duration}}">
+        <div class="header">
+            <div class="row">
+                <div class="col-md-3">
+                    <strong>الامتحان</strong> :{{ $exam->title }}
+                </div>
+                <div class="col-md-3">
+                    <strong>الماده</strong> : {{ $exam->subject->name }}
+                </div>
+                <div class="col-md-3">
+                    <strong>المدة</strong> : {{ $exam->duration }} دقيقة
+                </div>
+                <div class="col-md-3">
+                    <strong>المدرس</strong> : {{ $exam->subject->user->name }}
+                </div>
+                <div id="countdown" style="text-align: center" class="my-3 alert alert-primary"></div>
+            </div>
+        </div>
 
-    <!-- Start Main Banner Area -->
-    <div class="main-banner">
-        <div class="main-banner-item banner-item-three">
-            @if (!auth()->guard('student')->check())
-                <div class="container" style="padding-top: 200px">
-            @else
-                <div class="container" style="padding-top: 80px">
-            @endif
-                <div class="">
+        <div class="content">
 
-                    @if (!auth()->guard('student')->check())
-                        <div class="container" style="margin-top: -123px">
-                            <div class="main-banner-content">
-                                <div class="my-form" style="background: #222c5ab3;color: #FFF;padding: 40px;">
+            <form action="{{ route('results') }}" method="post" id="examForm">
 
-                                    <h2 style="color: #FFF">تسجيل الدخول</h2>
-                                    @if($errors->any())
-                                        <p class="alert alert-danger" style="color: #0a0a11">{{$errors->first()}}</p>
-                                    @endif
-                                    <form action="{{route('userLogin')}}" method="post">
-                                        @csrf
-                                        @method('POST')
-                                        <div class="mb-3 mt-4">
-                                            <label for="exampleInputEmail1" class="form-label">البريد الالكتروني</label>
-                                            <input type="email" class="form-control" name="email"
-                                                   aria-describedby="emailHelp">
-                                        </div>
-                                        <div class="mb-3 mt-4">
-                                            <label for="exampleInputPassword1" class="form-label">كلمة المرور</label>
-                                            <input type="password" class="form-control" name="password">
-                                        </div>
-                                        <button type="submit" class="btn btn-light mt-3">دخول</button>
-                                    </form>
+                <input type="hidden" name="exam_id" value="{{$exam->id}}">
+                <input type="hidden" name="subject_id" value="{{$exam->subject->id}}">
 
-                                </div>
+                @csrf
+                @method('post')
+                @if (count($exam->subject->questionSubject) > 0)
+
+                    @foreach ($exam->subject->questionSubject as $questionSubject)
+                        <div class="question">
+                            <div class="row">
+                                <p>الدرجة : {{ $questionSubject->degree }}</p>
+                                <p>{{ $questionSubject->question->question }}</p>
+                            </div>
+
+                            <div class="row">
+                                @if ($questionSubject->question->type == 'mcq')
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>A</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}" value="a">
+                                        <p>{{ $questionSubject->question->mcq->choice_A }}</p>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>B</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}"  value="b">
+                                        <p>{{ $questionSubject->question->mcq->choice_B }}</p>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>C</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}" value="c">
+                                        <p>{{ $questionSubject->question->mcq->choice_C }}</p>
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>D</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}" value="d">
+                                        <p>{{ $questionSubject->question->mcq->choice_D }}</p>
+                                    </div>
+                                @else
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>صح</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}" value="true">
+                                    </div>
+                                    <div class="col-md-6 d-flex align-items-center">
+                                        <label>خطأ</label>
+                                        <input type="radio" name="{{$questionSubject->question->id}}" value="false">
+                                    </div>
+                                @endif
 
                             </div>
                         </div>
-                    @else
-                        <h1>Exam</h1>
-                    @endif
-                </div>
-            </div>
-        </div>
+                    @endforeach
 
-        <div class="main-banner-shape">
-            <div class="banner-bg-shape">
-                <img src="{{asset('')}}/assets/img/main-banner/banner-bg-shape-1.png" class="white-image" alt="image">
-                <img src="{{asset('')}}/assets/img/main-banner/banner-bg-shape-1-dark.png" class="black-image"
-                     alt="image">
-            </div>
+                @endif
 
-            <div class="banner-bg-shape-2">
-                <img src="{{asset('')}}/assets/img/main-banner/banner-bg-shape-2.png" class="white-image" alt="image">
-                <img src="{{asset('')}}/assets/img/main-banner/banner-bg-shape-2-dark.png" class="black-image"
-                     alt="image">
-            </div>
+                <button id="endExam" type="submit" class="btn btn-primary my-5">إنهاء</button>
+
+            </form>
+
 
         </div>
     </div>
-    <!-- End Main Banner Area -->
+</div>
 
-@endsection
-
-
-@section('script')
-
-@endsection

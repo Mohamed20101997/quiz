@@ -26,6 +26,9 @@ use Illuminate\Support\Facades\Route;
 
 
     Route::post('exam-front', [\App\Http\Controllers\FrontController::class,  'getExam'])->name('exam.front');
+    Route::post('results', [\App\Http\Controllers\FrontController::class,  'results'])->name('results');
+
+    Route::get('profile', [\App\Http\Controllers\FrontController::class,  'profile'])->name('profile');
 
     Route::post('userLogin', [\App\Http\Controllers\FrontController::class,  'login'])->name('userLogin');
     Route::get('userLogout', [\App\Http\Controllers\FrontController::class,  'logout'])->name('userLogout');

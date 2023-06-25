@@ -44,6 +44,7 @@ class ExamController extends Controller
         $request->validate([
             'title'  => 'required',
             'duration'  => 'required',
+            'degree'  => 'required',
             'subject_id'  => 'required|exists:subjects,id',
         ]);
 
@@ -97,6 +98,7 @@ class ExamController extends Controller
         $request->validate([
             'title'  => 'required',
             'duration'  => 'required',
+            'degree'  => 'required',
             'subject_id'  => 'required|exists:subjects,id',
         ]);
 

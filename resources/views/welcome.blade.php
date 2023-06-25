@@ -3,7 +3,7 @@
 @section('content')
 
     <!-- Start Main Banner Area -->
-    <div class="main-banner">
+    <div class="main-banner" id="main-banner">
         <div class="main-banner-item banner-item-three">
             @if (!auth()->guard('student')->check())
                 <div class="container" style="padding-top: 200px">
@@ -107,6 +107,7 @@
     </div>
     <!-- End Main Banner Area -->
 
+
 @endsection
 
 
@@ -172,7 +173,41 @@
                     'exam_id' : $('#exams').val()
                     }
                 , success: function (response) {
-                    console.log(response);
+
+                    if(response.status == 'error')
+                    {
+                        $('#validation-errors').append('<li>' + response.message + '</li>');
+                    }else{
+                        $("#main-banner").html(response);
+
+                         // Get the duration from the exam table (assuming you have fetched it from the database)
+                                var duration = $('#exam_duration').val() * 60; // Convert duration to seconds
+                            // Calculate the end time
+                            var endTime = new Date().getTime() + duration * 1000;
+
+                            // Update the countdown every second
+                            var countdownInterval = setInterval(function() {
+                                var currentTime = new Date().getTime();
+                                var remainingTime = Math.floor((endTime - currentTime) / 1000);
+
+                                // Check if the countdown has reached zero
+                                if (remainingTime <= 0) {
+                                    clearInterval(countdownInterval);
+                                    // Perform the action when the duration ends
+                                    examDurationEnded();
+                                } else {
+                                    var minutes = Math.floor(remainingTime / 60);
+                                    var seconds = remainingTime % 60;
+                                    $('#countdown').text('الوقت المتبقي: ' + minutes + 'm ' + seconds + 's');
+                                }
+                            }, 1000);
+
+                            // Perform the action when the duration ends
+                            function examDurationEnded() {
+                                $("#examForm").submit(); // Submit the form
+                            }
+                    }
+
 
                 },error:function(response){
                     var errors = response.responseJSON.errors;
@@ -183,6 +218,19 @@
                     });
                 }
             });
+        });
+
+
+        $('#endExam').click(function(e) {
+            e.preventDefault(); // Prevents the default form submission
+
+            // Display a confirmation dialog
+            var confirmation = confirm("هل انت متأكد من انهاء الأمتحان ؟");
+
+            // If the user confirms, submit the form
+            if (confirmation) {
+            $('#examForm').submit();
+            }
         });
 
 

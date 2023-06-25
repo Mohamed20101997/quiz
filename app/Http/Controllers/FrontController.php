@@ -4,7 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Models\Exam;
 use App\Models\Room;
+use App\Models\QuestionSubject;
 use App\Models\Subject;
+use App\Models\StudentProfile;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -59,16 +61,13 @@ class FrontController extends Controller
 
     public function getRooms($id){
         $room = Room::where('exam_id',$id)->first();
-
-
-            $html = view('options.rooms' , compact('room'))->render();
-            return response()->json($html);
+        $html = view('options.rooms' , compact('room'))->render();
+        return response()->json($html);
 
     }
 
 
     public function getExam(Request $request){
-
 
         $request->validate([
             'room_id'  => 'required|exists:rooms,password',
@@ -86,19 +85,65 @@ class FrontController extends Controller
 
         try{
 
-            $room = Room::where([['password', $request->room_id],['user_id',$request->user_id],['exam_id' , $request->exam_id]])->first();
-            if($room){
-                $exam = Exam::where('id',$room->exam_id)->with('subject')->first();
-                
+            $StudentProfile = StudentProfile::where([['user_id',auth()->guard('student')->user()->id],['exam_id' , $request->exam_id]])->first();
+            if($StudentProfile)
+            {
+                 return response()->json(['status'=>'error' , 'message'=>'لقد قمت بإجراء هذا الامتحان من قبل']);
+            }else{
+                $room = Room::where([['password', $request->room_id],['user_id',$request->user_id],['exam_id' , $request->exam_id]])->first();
+                if($room){
+                    $exam = Exam::where('id',$room->exam_id)->with('subject')->first();
 
+                    $html = view('exam' , compact('exam'))->render();
+                    return response()->json($html);
+                }
             }
+
 
         }catch(\Exception $e){
 
-            return redirect()->back()->with(['error'=>'هناك مشكله']);
+            return response()->json(['status'=>'error' , 'message'=>'هناك مشكلة']);
         }
     }
 
+    public function results(Request $request){
 
+        $exam_id = $request->exam_id;
+        $subject_id = $request->subject_id;
+        $data = $request->except('_token', '_method' , 'exam_id' , 'subject_id');
+        $total =0;
+        if(count($data) > 0)
+        {
+            foreach($data as $key => $result){
+
+                $question = QuestionSubject::where([['subject_id',$subject_id],['question_id',$key]])->first();
+                if($result == $question->answer){
+
+                    $total += $question->degree;
+                }
+            }
+        }
+
+        StudentProfile::create([
+            'user_id' => auth()->guard('student')->user()->id,
+            'exam_id' => $exam_id,
+            'degree' => $total,
+        ]);
+
+
+        return redirect()->route('profile');
+
+    }
+
+
+
+    public function profile(){
+        $user_id = auth()->guard('student')->user()->id;
+
+        $StudentProfile = StudentProfile::where('user_id',auth()->guard('student')->user()->id)->with('exam')->get();
+
+        return view('profile' , compact('StudentProfile'));
+
+    }
 
 }

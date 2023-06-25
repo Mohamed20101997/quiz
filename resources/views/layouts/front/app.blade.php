@@ -48,11 +48,38 @@
         border-radius: 10px;
         color: #ec6606;
     }
+
+    .header{
+        background: #FFF;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .content{
+        margin-top: 20px;
+        background: #FFF;
+        padding: 20px;
+        border-radius: 20px;
+    }
+
+    .content .question{
+        border-bottom: 1px dashed;
+        padding: 13px;
+    }
+    input[type='radio']{
+        width: 20px ; height: 20px;
+    }
+    label{
+        font-size: 20px;
+        padding: 0 5px
+    }
+
+
 </style>
 <body>
 
 <!-- Start Preloader Area -->
-<div class="preloader">
+{{-- <div class="preloader">
     <div class="loader">
         <div class="wrapper">
             <div class="circle circle-1"></div>
@@ -61,7 +88,7 @@
             <div class="circle circle-3"></div>
         </div>
     </div>
-</div>
+</div> --}}
 <!-- End Preloader Area -->
 
 <!-- Start Navbar Area -->
@@ -101,7 +128,7 @@
                     </ul>
                 </div>
                 @if (auth()->guard('student')->check())
-                    <a class="navbar-brand mx-3" href="#" style="color: #1d7629 ; font-size: 15px" > الملف الشخصي</a>
+                    <a class="navbar-brand mx-3" href="{{route('profile')}}" style="color: #1d7629 ; font-size: 15px" > الملف الشخصي</a>
                     <a class="navbar-brand mx-3" href="#" style="color: #1d7629; font-size: 15px"> {{auth()->guard('student')->user()->name}} </a>
                     <a class="navbar-brand mx-3" href="{{route('userLogout')}}" style="color: #1d7629; font-size: 15px">خروج </a>
 
@@ -134,38 +161,6 @@
 
 @yield('content')
 
-
-<!-- Start Footer Area -->
-<section class="footer-area" style="padding: 20px">
-    <div class="container">
-        <div class="row">
-            <div class="col-lg-3 col-sm-6">
-                <div class="single-footer-widget">
-                    <div class="logo">
-                        <h2>
-                            <a href="{{route('home')}}">
-
-                            </a>
-                        </h2>
-                    </div>
-                    <p></p>
-                    <ul class="social" style="text-align: center">
-
-                        <li>
-                            <a href="https://twitter.com/abtdaeh?t=o-TJRnjpewyMlBbEGY9X5A&s=08" target="_blank">
-                                <i class='bx bxl-twitter'></i>
-                            </a>
-                        </li>
-
-                    </ul>
-                </div>
-            </div>
-
-
-        </div>
-    </div>
-</section>
-<!-- End Footer Area -->
 
 <!-- Start Go Top Area -->
 <div class="go-top">

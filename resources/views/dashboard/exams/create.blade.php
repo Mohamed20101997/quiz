@@ -57,6 +57,19 @@
                     </div> {{-- end of row --}}
 
 
+                    <div class="row">
+                        <div class="col-md-4">
+
+                            <div class="form-group">
+                                <label>درجة الامتحان</label>
+                                <input type="number" min="1" name="degree" placeholder="اضافة درجة الامتحان" class="form-control" required value="{{ old('degree') }}">
+                                @error('degree')
+                                    <div class="text-danger">{{ $message }}</div>
+                                @enderror
+                            </div>
+                        </div>
+                    </div>
+
                     <div class="form-group">
                         <button type="submit" class="btn btn-primary"><i class="fa fa-plus"></i>إضافه</button>
                     </div>
