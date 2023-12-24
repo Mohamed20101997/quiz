@@ -7,36 +7,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 
     <!-- Bootstrap CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/bootstrap.rtl.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/bootstrap.rtl.min.css">
     <!-- Animate CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/animate.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/animate.min.css">
     <!-- Meanmenu CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/meanmenu.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/meanmenu.css">
     <!-- Boxicons CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/boxicons.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/boxicons.min.css">
     <!-- Owl Carousel CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/owl.carousel.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/owl.carousel.min.css">
     <!-- Owl Carousel Default CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/owl.theme.default.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/owl.theme.default.min.css">
     <!-- Odometer CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/odometer.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/odometer.min.css">
     <!-- Magnific Popup CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/magnific-popup.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/magnific-popup.min.css">
     <!-- Imagelightbox CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/imagelightbox.min.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/imagelightbox.min.css">
     <!-- Style CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/style.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/style.css">
     <!-- Dark CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/dark.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/dark.css">
     <!-- Responsive CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/responsive.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/responsive.css">
     <!-- RTL CSS -->
-    <link rel="stylesheet" href="{{asset('')}}/assets/css/rtl.css">
+    <link rel="stylesheet" href="{{asset('')}}assets/css/rtl.css">
 
-    <script src="{{asset('')}}/assets/js/sweetalert2@11.js"></script>
+    <script src="{{asset('')}}assets/js/sweetalert2@11.js"></script>
     <title>Quiz</title>
 
-    <link rel="icon" type="image/png" href="{{asset('')}}/assets/img/img/logo.jpg">
+    <link rel="icon" type="image/png" href="{{asset('')}}assets/img/img/logo.jpg">
 </head>
 
 <style>
@@ -98,8 +98,8 @@
             <div class="main-responsive-menu">
                 <div class="logo">
                     <a href="{{route('home')}}">
-                        <img src="{{asset('')}}/assets/img/img/logo.png" class="black-logo" alt="image">
-                        <img src="{{asset('')}}/assets/img/img/logo.png" class="white-logo" alt="image">
+                        <img src="{{asset('')}}assets/img/img/logo.png" class="black-logo" alt="image">
+                        <img src="{{asset('')}}assets/img/img/logo.png" class="white-logo" alt="image">
                     </a>
                 </div>
             </div>
@@ -110,8 +110,8 @@
         <div class="container" style="max-width: 1240px">
             <nav class="navbar navbar-expand-md navbar-light">
                 <a class="navbar-brand" href="{{route('home')}}">
-                    <img src="{{asset('')}}/assets/img/img/logo.png" class="black-logo" alt="image" style="width: 100px;">
-                    <img src="{{asset('')}}/assets/img/img/logo.png" class="white-logo" alt="image" style="width: 100px;">
+                    <img src="{{asset('')}}assets/img/img/logo.png" class="black-logo" alt="image" style="width: 100px;">
+                    <img src="{{asset('')}}assets/img/img/logo.png" class="white-logo" alt="image" style="width: 100px;">
                 </a>
 
                 <div class="collapse navbar-collapse mean-menu" id="navbarSupportedContent">
@@ -175,32 +175,32 @@
 {{--<!-- dark version -->--}}
 
 <!-- Jquery Slim JS -->
-<script src="{{asset('')}}/assets/js/jquery.min.js"></script>
+<script src="{{asset('')}}assets/js/jquery.min.js"></script>
 <!-- Bootstrap JS -->
-<script src="{{asset('')}}/assets/js/bootstrap.bundle.min.js"></script>
+<script src="{{asset('')}}assets/js/bootstrap.bundle.min.js"></script>
 <!-- Meanmenu JS -->
-<script src="{{asset('')}}/assets/js/jquery.meanmenu.js"></script>
+<script src="{{asset('')}}assets/js/jquery.meanmenu.js"></script>
 <!-- Owl Carousel JS -->
-<script src="{{asset('')}}/assets/js/owl.carousel.min.js"></script>
+<script src="{{asset('')}}assets/js/owl.carousel.min.js"></script>
 <!-- Magnific Popup JS -->
-<script src="{{asset('')}}/assets/js/jquery.magnific-popup.min.js"></script>
+<script src="{{asset('')}}assets/js/jquery.magnific-popup.min.js"></script>
 <!-- Imagelightbox JS -->
-<script src="{{asset('')}}/assets/js/imagelightbox.min.js"></script>
+<script src="{{asset('')}}assets/js/imagelightbox.min.js"></script>
 <!-- Odometer JS -->
-<script src="{{asset('')}}/assets/js/odometer.min.js"></script>
+<script src="{{asset('')}}assets/js/odometer.min.js"></script>
 <!-- Jquery Appear JS -->
-<script src="{{asset('')}}/assets/js/jquery.appear.min.js"></script>
+<script src="{{asset('')}}assets/js/jquery.appear.min.js"></script>
 <!-- Ajaxchimp JS -->
-<script src="{{asset('')}}/assets/js/jquery.ajaxchimp.min.js"></script>
+<script src="{{asset('')}}assets/js/jquery.ajaxchimp.min.js"></script>
 <!-- Form Validator JS -->
-<script src="{{asset('')}}/assets/js/form-validator.min.js"></script>
+<script src="{{asset('')}}assets/js/form-validator.min.js"></script>
 <!-- Contact JS -->
-<script src="{{asset('')}}/assets/js/contact-form-script.js"></script>
+<script src="{{asset('')}}assets/js/contact-form-script.js"></script>
 
-<script src="{{asset('')}}/assets/js/student-registration-form-script.js"></script>
+<script src="{{asset('')}}assets/js/student-registration-form-script.js"></script>
 <!-- Custom JS -->
-<script src="{{asset('')}}/assets/js/playerjs.js"></script>
-<script src="{{asset('')}}/assets/js/main.js"></script>
+<script src="{{asset('')}}assets/js/playerjs.js"></script>
+<script src="{{asset('')}}assets/js/main.js"></script>
 
 @yield('script')
 
