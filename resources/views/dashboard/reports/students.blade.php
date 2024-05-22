@@ -28,11 +28,11 @@
 
 @section('content')
 
-    <h1>تقارير الطلاب</h1>
+    <h1>تقارير المتدربين</h1>
 
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('welcome') }}">الصفحه الرئيسيه </a></li>
-        <li class="breadcrumb-item" active>تقارير الطلاب</li>
+        <li class="breadcrumb-item" active>تقارير المتدربين</li>
     </ul>
 
 
@@ -53,14 +53,14 @@
                                     <thead>
                                     <tr class="text-center">
                                         <th>#</th>
-                                        <th>اسم الطالب</th>
+                                        <th>اسم المتدرب</th>
                                         <th>البريد الالكتروني</th>
                                         <th>اسم الدكتور</th>
                                         <th>المادة</th>
                                         <th>الامتحان</th>
                                         <th>المدة الزمنيه </th>
                                         <th>درجة الامتحان</th>
-                                        <th>درجة الطالب</th>
+                                        <th>درجة المتدرب</th>
                                     </tr>
                                     </thead>
 

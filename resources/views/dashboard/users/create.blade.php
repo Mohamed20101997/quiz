@@ -47,7 +47,7 @@
                                 <select name="role" class="form-control" required>
                                     <option value="">اختر</option>
                                     <option value="teacher" {{old('role') == 'teacher' ? 'selected' : ''}}>مدرس</option>
-                                    <option value="student" {{old('role') == 'student' ? 'selected' : ''}}>طالب</option>
+                                    <option value="student" {{old('role') == 'student' ? 'selected' : ''}}>متدرب</option>
                                 </select>
                                 @error('role')
                                     <div class="text-danger">{{ $message }}</div>
