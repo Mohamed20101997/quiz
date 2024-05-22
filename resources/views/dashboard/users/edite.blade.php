@@ -1,11 +1,11 @@
 @extends('layouts.dashboard.app')
 
 @section('content')
-    <h1>المستخدمين</h1>
+    <h1>المتدربين</h1>
 
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('welcome') }}">الصفحه الرئيسيه</a></li>
-        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">المستخدمين</a></li>
+        <li class="breadcrumb-item"><a href="{{ route('user.index') }}">المتدربين</a></li>
         <li class="breadcrumb-item" active>تعديل</li>
     </ul>
 

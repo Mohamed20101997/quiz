@@ -29,6 +29,10 @@
             width: 110px;
         }
     </style>
+
+
+    @yield('style')
+
 </head>
 <body class="app sidebar-mini">
 <!-- Navbar-->

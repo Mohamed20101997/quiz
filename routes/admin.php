@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ReportsController;
 use Illuminate\Support\Facades\Route;
 
 
@@ -15,6 +16,10 @@ Route::group(['middleware'=>['auth:web']], function () {
     //logout route
     Route::post('logout', 'AuthController@logout')->name('logout');
 
+
+    Route::get('teacher/report', [ReportsController::class , 'teacherReport'])->name('teacher.report');
+
+    Route::get('student/report', [ReportsController::class , 'studentReport'])->name('student.report');
 
 });  /** End of Route Group  */
 

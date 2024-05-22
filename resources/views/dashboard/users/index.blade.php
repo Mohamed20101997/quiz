@@ -2,11 +2,11 @@
 
 @section('content')
 
-    <h1>المستخدمين</h1>
+    <h1>المتدربين</h1>
 
     <ul class="breadcrumb">
         <li class="breadcrumb-item"><a href="{{ route('welcome') }}">الصفحه الرئيسيه </a></li>
-        <li class="breadcrumb-item" active>المستخدمين</li>
+        <li class="breadcrumb-item" active>المتدربين</li>
     </ul>
 
 

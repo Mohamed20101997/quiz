@@ -49,6 +49,12 @@ class User extends Authenticatable
        return $this->hasMany(Subject::class , 'user_id','id');
     }
 
+
+    public function exams(){
+        return $this->hasMany(Exam::class , 'user_id','id');
+     }
+
+
     public function getRoleAttribute($value){
         if($value == 'student'){
             return 'طالب';
